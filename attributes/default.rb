@@ -9,5 +9,10 @@ else
   package = node[:vmware_tools][:version]
 end
 
+# For binary packages
 default[:vmware_tools][:base_url] = "http://packages.vmware.com/tools/esx/#{package}/"
 default[:vmware_tools][:repo_key] = 'http://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-RSA-KEY.pub'
+
+# For source packages
+default[:vmware_tools][:source_url]
+default[:vmware_tools][:installed] = false 
