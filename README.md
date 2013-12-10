@@ -1,23 +1,23 @@
 vmware-tools Cookbook
 =====================
-TODO: Enter the cookbook description here.
+Installs VMWare Tools
 
-e.g.
-This cookbook makes your favorite breakfast sandwhich.
+Currently only tested on Ubuntu 12.04 and the binary install will only work with
+Ubuntu.  The source install however should work on other distributions but is not
+tested.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
 
-e.g.
-#### packages
-- `toaster` - vmware-tools needs toaster to brown your bagel.
+#### platforms
+- `Ubuntu 12.04`
+
+#### cookbooks
+- `ark` - used to download the source tar.gz file
+- `apt` - used to add package repo for binary
 
 Attributes
 ----------
-TODO: List you cookbook attributes here.
-
-e.g.
 #### vmware-tools::default
 <table>
   <tr>
@@ -27,20 +27,75 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['vmware-tools']['bacon']</tt></td>
+    <td><tt>['vmware_tools']['install_method']</tt></td>
+    <td>String</td>
+    <td>can be either binary or source</td>
+    <td><tt>binary</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['vmware_tools']['version']</tt></td>
+    <td>String</td>
+    <td>the version of vmware to use (Binary only)</td>
+    <td><tt>5.1</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['vmware_tools']['latest']</tt></td>
     <td>Boolean</td>
-    <td>whether to include bacon</td>
+    <td>the install latest package version (Binary only)</td>
     <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['vmware_tools']['headless']</tt></td>
+    <td>Boolean</td>
+    <td>whether to just install headless tools (Binary only)</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['vmware_tools']['repo']</tt></td>
+    <td>String</td>
+    <td>the repository to use (Binary only)</td>
+    <td><tt>http://packages.vmware.com/tools/esx/</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['vmware_tools']['repo_key']</tt></td>
+    <td>String</td>
+    <td>the repository key (Binary only)</td>
+    <td><tt>http://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-RSA-KEY.pub</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['vmware_tools']['source_url']</tt></td>
+    <td>String</td>
+    <td>the url to pull the vmware tar.gz from (Source only)</td>
+    <td><tt>nil</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['vmware_tools']['installed']</tt></td>
+    <td>Boolean</td>
+    <td>whether the vmware tools are installed, gets set by source recipe(Source only)</td>
+    <td><tt>false</tt></td>
   </tr>
 </table>
 
 Usage
 -----
-#### vmware-tools::default
-TODO: Write usage instructions for each cookbook.
+#### vmware-tools::source
 
-e.g.
-Just include `vmware-tools` in your node's `run_list`:
+```json
+{
+  "name":"my_node",
+  "normal": {
+    "vmware_tools": {
+      "install_method": "source",
+      "source_url": "http://mysourceurl.com/vmwaretools.tar.gz"
+    }
+  },
+  "run_list": [
+    "recipe[vmware-tools]"
+  ]
+}
+```
+
+#### vmware-tools::binary
 
 ```json
 {
@@ -53,9 +108,6 @@ Just include `vmware-tools` in your node's `run_list`:
 
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
-
-e.g.
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
 3. Write you change
@@ -65,4 +117,8 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+License: MIT
+
+Authors:
+
+* Jim Rosser - jarosser06@tamu.edu
