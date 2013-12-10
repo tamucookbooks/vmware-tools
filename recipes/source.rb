@@ -2,10 +2,10 @@ package 'open-vm-tools' do
   action :purge
 end
 
-unless node[:vmware_tools][:installed]
+unless node['vmware_tools']['installed']
 
   ark 'vmware_tools' do
-    url node[:vmware_tools][:source_url]
+    url node['vmware_tools']['source_url']
     path '/tmp'
     action :put
   end
@@ -18,7 +18,7 @@ unless node[:vmware_tools][:installed]
 
   ruby_block 'set_vmware_tools_installed' do
     block do
-      node.set[:vmware_tools][:installed] = true
+      node.set['vmware_tools']['installed'] = true
     end
     action :nothing
   end
