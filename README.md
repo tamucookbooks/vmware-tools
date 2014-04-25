@@ -11,10 +11,12 @@ Requirements
 
 #### platforms
 - `Ubuntu 12.04`
+- `RHEL (CentOS,Oracle) 6.4`
 
 #### cookbooks
 - `ark` - used to download the source tar.gz file
 - `apt` - used to add package repo for binary
+- `yum` - used to add package repo for binary
 
 Attributes
 ----------
