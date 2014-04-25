@@ -4,6 +4,4 @@ cookbook 'apt'
 cookbook 'ark'
 cookbook 'yum'
 
-group :integration do
-  cookbook "vmware-tools", :path => "."
-end
+metadata
