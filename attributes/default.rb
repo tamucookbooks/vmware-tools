@@ -1,6 +1,6 @@
 default['vmware_tools']['install_method'] = 'binary'
 default['vmware_tools']['version'] = '5.1'
-default['vmware_tools']['latest'] = true
+default['vmware_tools']['latest'] = false
 default['vmware_tools']['headless'] = true
 
 if node['vmware_tools']['latest']
